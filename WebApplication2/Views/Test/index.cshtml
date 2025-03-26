@@ -1,0 +1,48 @@
+@{
+    ViewBag.Title = "Test Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Input Page</title>
+    <style>
+        body {
+            background-color: lightgray;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .output {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Enter a Text</h2>
+
+    @using (Html.BeginForm("Index", "Test", FormMethod.Post))
+    {
+        <input type="text" name="userInput" placeholder="Enter text here" required />
+        <button type="submit">Submit</button>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewBag.UserText))
+    {
+        <div class="output">
+            <script>
+                document.body.style.background = "lightblue";
+            </script>
+            You entered: @ViewBag.UserText
+            @Html.Raw(ViewBag.DangerousOutput)
+            <!--You entered: @Html.Raw(ViewBag.UserText)  /   @ViewBag.UserText -->
+        </div>
+    }
+
+</body>
+</html>
